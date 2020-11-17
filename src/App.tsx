@@ -1,8 +1,9 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import './App.css';
 import AppStateKeys from './AppStateKeys';
 import SummarySun from './components/SummarySun/SummarySun';
 import LocationForm from './components/LocationForm/LocationForm';
+import WeatherAPI, {GoogleMapsOpenWeatherAPI} from './api/weatherAPI';
 
 const {
   SomeText,
@@ -20,6 +21,7 @@ const {
   SunriseTime,
   SunsetTime,
   Loading,
+  WeatherLoaded,
 } = AppStateKeys;
 
 export type AppState = {
@@ -38,6 +40,7 @@ export type AppState = {
   [SunriseTime]: Date;
   [SunsetTime]: Date;
   [Loading]: boolean;
+  [WeatherLoaded]: Partial<AppState>;
 };
 
 export interface GlobalStoreInteractor {
@@ -51,12 +54,22 @@ type AppProps = {
 
 const WeatherApp = ({store}: AppProps) => {
   const {subscribe, update} = store;
-
+  const api: WeatherAPI = new GoogleMapsOpenWeatherAPI(
+    weather => {
+      update(WeatherLoaded, weather);
+      update(Loading, false);
+    },
+    error => {
+      console.log(error);
+    }
+  );
   return (
     <div className="App">
       <LocationForm
         submit={(query: string) => {
-          update(LocationQuery, query);
+          console.log('submit');
+          update(Loading, true);
+          api.updateWeatherFromQuery(query);
         }}
         loading={subscribe(Loading)}
       />

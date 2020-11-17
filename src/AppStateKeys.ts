@@ -14,6 +14,7 @@ enum AppStateKeys {
   SunriseTime = 'sunrise',
   SunsetTime = 'sunset',
   Loading = 'loading',
+  WeatherLoaded = 'loaded',
 }
 
 export default AppStateKeys;

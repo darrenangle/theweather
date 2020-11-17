@@ -4,13 +4,6 @@ import AppStateKeys from '../AppStateKeys';
 import {Provider, useSelector} from 'react-redux';
 import {createStore} from 'redux';
 
-// const asyncFunctionMiddleware = storeAPI => next => action => {
-//   if (typeof action === 'function') {
-//     return action(storeAPI.dispatch);
-//   }
-//   return next(action);
-// };
-
 const {
   SomeText,
   WeatherSummary,
@@ -27,6 +20,7 @@ const {
   SunriseTime,
   SunsetTime,
   Loading,
+  WeatherLoaded,
 } = AppStateKeys;
 
 const initialState: AppState = {
@@ -45,20 +39,31 @@ const initialState: AppState = {
   [SunriseTime]: new Date(),
   [SunsetTime]: new Date(),
   [Loading]: false,
+  [WeatherLoaded]: {},
 };
 
 function appReducer(
   state = initialState,
-  action: {type: string; payload: unknown}
+  action: {type: string; payload: any}
 ) {
-  if (action.type === SomeText) {
-    return {
-      ...state,
-      [SomeText]: action.payload as string,
-      [City]: 'San Francisco',
-    };
+  console.log(action);
+  switch (action.type) {
+    case WeatherLoaded:
+      return {
+        ...state,
+        [WeatherSummary]: action.payload[WeatherSummary],
+        [CurrentTemp]: action.payload[CurrentTemp],
+      };
+      break;
+    case Loading:
+      return {
+        ...state,
+        [Loading]: action.payload,
+      };
+      break;
+    default:
+      return state;
   }
-  return state;
 }
 
 const store = createStore(appReducer);

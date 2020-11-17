@@ -26,7 +26,7 @@ const LocationForm = (props: LocationFormProps) => {
         value={query}
         onChange={handleChange}
       />
-      <button onChange={handleSubmit} disabled={buttonDisabled ?? loading}>
+      <button onClick={handleSubmit} disabled={buttonDisabled ?? loading}>
         Submit
       </button>
     </>

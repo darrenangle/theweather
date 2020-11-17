@@ -1,4 +1,6 @@
-export default interface LatLong {
+import {AppState} from '../App';
+
+export interface LatLong {
   getLatLongFromQuery(
     query: string
   ): Promise<{lat: number; long: number; message: string}>;
@@ -45,5 +47,35 @@ export class GoogleGeocodeLatLong implements LatLong {
       long: result.results?.[0]?.geometry?.location?.lng ?? 0,
       message: result.status,
     };
+  }
+}
+
+export default interface WeatherAPI {
+  updateWeatherFromQuery(query: string): void;
+}
+
+export class GoogleMapsOpenWeatherAPI implements WeatherAPI {
+  constructor(
+    private onSuccess: (result: Partial<AppState>) => void,
+    private onError: (error: string) => void
+  ) {}
+  async updateWeatherFromQuery(query: string) {
+    console.log('updateWeatherCalled');
+    return await Promise.resolve({
+      summary: 'Clear',
+      currentTemp: 99,
+      city: 'Chicago',
+      dateTime: new Date(),
+      high: 99,
+      low: 85,
+      morning: 91,
+      day: 98,
+      eve: 85,
+      night: 88,
+      sunrise: new Date(),
+      sunset: new Date(),
+    } as Partial<AppState>)
+      .then(data => this.onSuccess(data))
+      .catch(error => this.onError(error));
   }
 }
