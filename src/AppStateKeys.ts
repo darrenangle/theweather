@@ -3,7 +3,7 @@ enum AppStateKeys {
   WeatherSummary = 'summary',
   CurrentTemp = 'currentTemp',
   City = 'city',
-  ZipCode = 'zip',
+  LocationQuery = 'query',
   DateTime = 'dateTime',
   TempHigh = 'high',
   TempLow = 'low',
@@ -13,6 +13,7 @@ enum AppStateKeys {
   TempNight = 'night',
   SunriseTime = 'sunrise',
   SunsetTime = 'sunset',
+  Loading = 'loading',
 }
 
 export default AppStateKeys;

@@ -1,8 +1,8 @@
 import React, {ChangeEvent} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import AppStateKeys from './AppStateKeys';
 import SummarySun from './components/SummarySun/SummarySun';
+import LocationForm from './components/LocationForm/LocationForm';
 
 const {
   SomeText,
@@ -10,7 +10,7 @@ const {
   CurrentTemp,
   City,
   DateTime,
-  ZipCode,
+  LocationQuery,
   TempHigh,
   TempLow,
   TempMorn,
@@ -19,6 +19,7 @@ const {
   TempNight,
   SunriseTime,
   SunsetTime,
+  Loading,
 } = AppStateKeys;
 
 export type AppState = {
@@ -26,7 +27,7 @@ export type AppState = {
   [WeatherSummary]: string;
   [CurrentTemp]: number;
   [City]: string;
-  [ZipCode]: number;
+  [LocationQuery]: number;
   [DateTime]: Date;
   [TempHigh]: number;
   [TempLow]: number;
@@ -36,6 +37,7 @@ export type AppState = {
   [TempNight]: number;
   [SunriseTime]: Date;
   [SunsetTime]: Date;
+  [Loading]: boolean;
 };
 
 export interface GlobalStoreInteractor {
@@ -50,18 +52,14 @@ type AppProps = {
 const WeatherApp = ({store}: AppProps) => {
   const {subscribe, update} = store;
 
-  const text = subscribe<string>(SomeText) ?? 'default';
-
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    update<string>(SomeText, event?.target?.value);
-  }
-
   return (
     <div className="App">
-      <header className="App-header">
-        <p>{text}</p>
-      </header>
-      <input type="text" onChange={handleChange} />
+      <LocationForm
+        submit={(query: string) => {
+          update(LocationQuery, query);
+        }}
+        loading={subscribe(Loading)}
+      />
       <SummarySun
         currentTemp={subscribe(CurrentTemp)}
         summary={subscribe(WeatherSummary)}
