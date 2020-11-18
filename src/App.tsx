@@ -7,6 +7,7 @@ import WeatherQuote from './components/WeatherQuote/WeatherQuote';
 import TodayDateTime from './components/TodayDateTime/TodayDateTime';
 import HighLow from './components/HighLow/HighLow';
 import DayTempRange from './components/DayTempRange/DayTempRange';
+import SunriseSunset from './components/SunriseSunset/SunriseSunset';
 import WeatherAPI, {GoogleMapsOpenWeatherAPI} from './api/weatherAPI';
 
 const {
@@ -44,6 +45,7 @@ const WeatherApp = ({store}: AppProps) => {
       update(Loading, false);
     },
     error => {
+      // @todo: proper errorhandling
       console.log(error);
     }
   );
@@ -69,6 +71,10 @@ const WeatherApp = ({store}: AppProps) => {
         day={subscribe(TempDay)}
         evening={subscribe(TempEve)}
         night={subscribe(TempNight)}
+      />
+      <SunriseSunset
+        sunrise={subscribe(SunriseTime)}
+        sunset={subscribe(SunsetTime)}
       />
     </div>
   );
