@@ -26,21 +26,20 @@ const QuoteDiv = styled.div<{faded: boolean}>`
   visibility: ${({faded}) => (faded ? 'hidden' : 'visible')};
 `;
 
+const getRandomQuote = () => quotes[Math.floor(Math.random() * quotes.length)];
+
 const WeatherQuote = () => {
-  const [quote, setQuote] = useState({
-    quote: 'You are the sky. Everything else – it’s just the weather.',
-    author: 'Pema Chödrön',
-  });
+  const [quote, setQuote] = useState(getRandomQuote());
   const [faded, setFaded] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setFaded(true);
       setTimeout(() => {
-        setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
+        setQuote(getRandomQuote());
         setFaded(false);
       }, 0.5 * 1000);
-    }, 3 * 1000);
+    }, 30 * 1000);
 
     return () => clearInterval(interval);
   }, []);

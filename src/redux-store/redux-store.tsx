@@ -24,15 +24,15 @@ const {
 
 const initialState: AppState = {
   [WeatherSummary]: 'clear',
-  [CurrentTemp]: 72,
-  [City]: 'SOMEWHERE',
+  [CurrentTemp]: 99,
+  [City]: 'SOMEWHERE, USA',
   [DateTime]: new Date(),
   [TempHigh]: 99,
-  [TempLow]: 54,
-  [TempMorn]: 82,
+  [TempLow]: 99,
+  [TempMorn]: 99,
   [TempDay]: 99,
-  [TempEve]: 87,
-  [TempNight]: 62,
+  [TempEve]: 99,
+  [TempNight]: 99,
   [SunriseTime]: new Date(),
   [SunsetTime]: new Date(),
   [Loading]: false,
@@ -44,7 +44,6 @@ function appReducer(
   state = initialState,
   action: {type: string; payload: unknown}
 ) {
-  // @todd: break up reducers into multiple and combineReducers()
   switch (action.type) {
     case WeatherLoaded:
       return Object.assign({}, state, action.payload as Partial<AppState>);
