@@ -28,9 +28,8 @@ const QuoteDiv = styled.div<{faded: boolean}>`
 
 const WeatherQuote = () => {
   const [quote, setQuote] = useState({
-    quote:
-      "Don't knock the weather. If it didn't change once in a while, nine out of ten people couldn't start a conversation.",
-    author: 'Kim Hubbard',
+    quote: 'You are the sky. Everything else – it’s just the weather.',
+    author: 'Pema Chödrön',
   });
   const [faded, setFaded] = useState(false);
 
@@ -40,8 +39,8 @@ const WeatherQuote = () => {
       setTimeout(() => {
         setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
         setFaded(false);
-      }, 500);
-    }, 5000);
+      }, 0.5 * 1000);
+    }, 3 * 1000);
 
     return () => clearInterval(interval);
   }, []);
