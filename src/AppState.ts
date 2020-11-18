@@ -13,6 +13,7 @@ export enum AppStateKeys {
   SunsetTime = 'sunset',
   Loading = 'loading',
   WeatherLoaded = 'loaded',
+  Timezone = 'timezone',
 }
 
 const {
@@ -30,6 +31,7 @@ const {
   SunsetTime,
   Loading,
   WeatherLoaded,
+  Timezone,
 } = AppStateKeys;
 
 export type AppState = {
@@ -46,6 +48,7 @@ export type AppState = {
   [SunriseTime]: Date;
   [SunsetTime]: Date;
   [Loading]: boolean;
+  [Timezone]: string;
   [WeatherLoaded]: Partial<AppState>;
 };
 

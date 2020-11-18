@@ -4,67 +4,85 @@ export default interface WeatherAPI {
   updateWeatherFromQuery(query: string): void;
 }
 
-type GoogleGeoCodeAPIResponse = {
-  results: [
+type OpenWeatherOneCallAPIResponse = {
+  current: {
+    dt: number;
+    sunrise: number;
+    sunset: number;
+    temp: number;
+    weather: {
+      main: string;
+    };
+  };
+  daily: [
     {
-      geometry: {
-        location: {
-          lat: number;
-          lng: number;
-        };
+      temp: {
+        day: number;
+        min: number;
+        max: number;
+        night: number;
+        eve: number;
+        morn: number;
       };
     }
   ];
-  status:
-    | 'OK'
-    | 'ZERO_RESULTS'
-    | 'OVER_DAILY_LIMIT'
-    | 'OVER_QUERY_LIMIT'
-    | 'REQUEST_DENIED'
-    | 'INVALID_REQUEST'
-    | 'UNKNOWN_ERROR';
+  place: string;
+  timezone: string;
 };
 
-type OpenWeatherOneCallAPIResponse = {};
+export async function getWeather(query: string): Promise<Partial<AppState>> {
+  return await fetch(
+    `https://42dnorruxh.execute-api.us-east-1.amazonaws.com/default/LatLongFromGoogle?place=${encodeURI(
+      query
+    )}`
+  )
+    .then(response => response.json())
+    .then((result: OpenWeatherOneCallAPIResponse) => {
+      return {
+        summary: result.current?.weather?.main ?? 'unclear',
+        currentTemp: result.current?.temp | 0 ?? 0,
+        city: result.place ?? 'nowhere, USA',
+        dateTime: new Date(result.current?.dt * 1000) ?? new Date(),
+        high: result.daily[0]?.temp?.max | 0 ?? 0,
+        low: result.daily[0]?.temp?.min | 0 ?? 0,
+        morning: result.daily[0]?.temp?.morn | 0 ?? 0,
+        day: result.daily[0]?.temp?.morn | 0 ?? 0,
+        eve: result.daily[0]?.temp?.eve | 0 ?? 0,
+        night: result.daily[0]?.temp?.night | 0 ?? 0,
+        sunrise: new Date(result.current?.sunrise * 1000) ?? new Date(),
+        sunset: new Date(result.current?.sunset * 1000) ?? new Date(),
+        timezone: result.timezone ?? 'America/Chicago',
+      };
+    })
+    .catch(error => {
+      console.log(error);
+      return {
+        summary: 'error',
+        currentTemp: 500,
+        city: 'WEATHER UNPREDICTABLE: CHECK THE LOGS',
+        dateTime: new Date(),
+        high: 0,
+        low: 0,
+        morning: 0,
+        day: 0,
+        eve: 0,
+        night: 0,
+        sunrise: new Date(),
+        sunset: new Date(),
+      };
+    });
+}
 
 export class GoogleMapsOpenWeatherAPI implements WeatherAPI {
   constructor(
-    // @todo: don't use an appstate partial, create a new type / nested type
     private onSuccess: (result: Partial<AppState>) => void,
-    private onError: (error: string) => void
+    private onError: (error: string) => void,
+    public getWeatherFromBackend: (
+      query: string
+    ) => Promise<Partial<AppState>> = getWeather
   ) {}
   async updateWeatherFromQuery(query: string) {
-    const latLong = await fetch(
-      `https://42dnorruxh.execute-api.us-east-1.amazonaws.com/default/LatLongFromGoogle?place=${encodeURI(
-        query
-      )}`
-    )
-      .then(response => response.json())
-      .then((result: GoogleGeoCodeAPIResponse) => {
-        return {
-          lat: result.results?.[0]?.geometry?.location?.lat ?? 0,
-          long: result.results?.[0]?.geometry?.location?.lng ?? 0,
-          message: result.status ?? 'NO_STATUS',
-        };
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
-    return await Promise.resolve({
-      summary: 'Clear',
-      currentTemp: 99,
-      city: 'Chicago',
-      dateTime: new Date(),
-      high: 99,
-      low: 99,
-      morning: 99,
-      day: 99,
-      eve: 99,
-      night: 99,
-      sunrise: new Date(),
-      sunset: new Date(),
-    } as Partial<AppState>)
+    return await this.getWeatherFromBackend(query)
       .then(data => this.onSuccess(data))
       .catch(error => this.onError(error));
   }

@@ -2,10 +2,11 @@ import React from 'react';
 
 type TodayDateTimeProps = {
   date: Date;
+  timezone: string;
 };
 
 const TodayDateTime = (props: TodayDateTimeProps) => {
-  const {date} = props;
+  const {date, timezone} = props;
   //@todo: verify browser support
   const plainDate = `${date
     .toLocaleString('default', {
@@ -13,11 +14,13 @@ const TodayDateTime = (props: TodayDateTimeProps) => {
       weekday: 'long',
       month: 'long',
       year: 'numeric',
+      timeZone: timezone,
     })
     .replaceAll(',', ' ')}`;
   const time = date.toLocaleTimeString('default', {
     hour: 'numeric',
     minute: 'numeric',
+    timeZone: timezone,
   });
   return (
     <div>

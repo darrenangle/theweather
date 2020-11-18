@@ -24,6 +24,7 @@ const {
   SunsetTime,
   Loading,
   WeatherLoaded,
+  Timezone,
 } = AppStateKeys;
 
 export interface GlobalStoreInteractor {
@@ -63,7 +64,10 @@ const WeatherApp = ({store}: AppProps) => {
         city={subscribe(City)}
       />
       <WeatherQuote />
-      <TodayDateTime date={subscribe(DateTime)} />
+      <TodayDateTime
+        date={subscribe(DateTime)}
+        timezone={subscribe(Timezone)}
+      />
       <HighLow high={subscribe(TempHigh)} low={subscribe(TempLow)} />
       <DayTempRange
         morning={subscribe(TempMorn)}
@@ -74,6 +78,7 @@ const WeatherApp = ({store}: AppProps) => {
       <SunriseSunset
         sunrise={subscribe(SunriseTime)}
         sunset={subscribe(SunsetTime)}
+        timezone={subscribe(Timezone)}
       />
     </div>
   );

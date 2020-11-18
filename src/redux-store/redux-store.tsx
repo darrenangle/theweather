@@ -19,6 +19,7 @@ const {
   SunsetTime,
   Loading,
   WeatherLoaded,
+  Timezone,
 } = AppStateKeys;
 
 const initialState: AppState = {
@@ -35,6 +36,7 @@ const initialState: AppState = {
   [SunriseTime]: new Date(),
   [SunsetTime]: new Date(),
   [Loading]: false,
+  [Timezone]: 'America/Chicago',
   [WeatherLoaded]: {},
 };
 
