@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import WeatherApp from './App';
-import './components/layout-and-styles/grid.css';
-import './components/layout-and-styles/reset.css';
+import './layout-and-styles/reset.css';
+import './layout-and-styles/fonts/fonts.css';
 
 import {withReduxStore} from './redux-store/redux-store';
 
