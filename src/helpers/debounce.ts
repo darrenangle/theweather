@@ -1,6 +1,6 @@
 const debounce = (func: Function, duration: number) => {
   let timeout: number;
-  const debouncedFunction = function (...args: any) {
+  const debouncedFunction = (...args: any) => {
     const effect = () => {
       clearTimeout(timeout);
       return func.apply(debouncedFunction, args);

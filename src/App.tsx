@@ -4,6 +4,7 @@ import {AppStateKeys} from './AppState';
 import SummarySun from './components/SummarySun/SummarySun';
 import LocationForm from './components/LocationForm/LocationForm';
 import WeatherQuote from './components/WeatherQuote/WeatherQuote';
+import TodayDateTime from './components/TodayDateTime/TodayDateTime';
 import WeatherAPI, {GoogleMapsOpenWeatherAPI} from './api/weatherAPI';
 
 const {
@@ -60,6 +61,7 @@ const WeatherApp = ({store}: AppProps) => {
         city={subscribe(City)}
       />
       <WeatherQuote />
+      <TodayDateTime date={subscribe(DateTime)} />
     </div>
   );
 };
