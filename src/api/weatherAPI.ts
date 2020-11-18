@@ -1,4 +1,4 @@
-import {AppState} from '../App';
+import {AppState} from '../AppState';
 
 export interface LatLong {
   getLatLongFromQuery(
@@ -56,6 +56,7 @@ export default interface WeatherAPI {
 
 export class GoogleMapsOpenWeatherAPI implements WeatherAPI {
   constructor(
+    // @todo: don't use an appstate partial, create a new type / nested type
     private onSuccess: (result: Partial<AppState>) => void,
     private onError: (error: string) => void
   ) {}

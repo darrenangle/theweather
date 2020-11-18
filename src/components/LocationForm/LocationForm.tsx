@@ -9,13 +9,10 @@ const LocationForm = (props: LocationFormProps) => {
   const {submit, loading} = props;
   const [query, setQuery] = useState('');
   const [buttonDisabled, setButtonDisabled] = useState(true);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setButtonDisabled(event.target.value === '' ?? true);
     setQuery(event.target.value);
-  };
-  const handleSubmit = () => {
-    setButtonDisabled(true);
-    submit(query);
   };
 
   return (
@@ -26,7 +23,10 @@ const LocationForm = (props: LocationFormProps) => {
         value={query}
         onChange={handleChange}
       />
-      <button onClick={handleSubmit} disabled={buttonDisabled ?? loading}>
+      <button
+        onClick={() => submit(query)}
+        disabled={buttonDisabled || loading}
+      >
         Submit
       </button>
     </>

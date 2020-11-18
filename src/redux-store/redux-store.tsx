@@ -1,6 +1,6 @@
 import React from 'react';
-import WeatherApp, {AppState} from '../App';
-import AppStateKeys from '../AppStateKeys';
+import WeatherApp from '../App';
+import AppState, {AppStateKeys} from '../AppState';
 import {Provider, useSelector} from 'react-redux';
 import {createStore} from 'redux';
 
@@ -24,7 +24,7 @@ const {
 } = AppStateKeys;
 
 const initialState: AppState = {
-  [SomeText]: "Hi did you know we're using redux?",
+  [SomeText]: 'Hello from the redux Store',
   [WeatherSummary]: 'clear',
   [CurrentTemp]: 90,
   [City]: 'Chicago',
