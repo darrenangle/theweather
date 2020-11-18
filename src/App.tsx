@@ -3,6 +3,7 @@ import './App.css';
 import {AppStateKeys} from './AppState';
 import SummarySun from './components/SummarySun/SummarySun';
 import LocationForm from './components/LocationForm/LocationForm';
+import WeatherQuote from './components/WeatherQuote/WeatherQuote';
 import WeatherAPI, {GoogleMapsOpenWeatherAPI} from './api/weatherAPI';
 
 const {
@@ -58,6 +59,7 @@ const WeatherApp = ({store}: AppProps) => {
         summary={subscribe(WeatherSummary)}
         city={subscribe(City)}
       />
+      <WeatherQuote />
     </div>
   );
 };

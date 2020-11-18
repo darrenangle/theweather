@@ -1,22 +1,10 @@
 import React, {ChangeEvent, useState} from 'react';
+import debounce from '../../helpers/debounce';
 
 type LocationFormProps = {
   submit: (query: string) => void;
   loading: boolean;
 };
-
-function debounce(func: Function, duration: number) {
-  let timeout: NodeJS.Timeout;
-  const debouncedFunction = function (...args: any) {
-    const effect = () => {
-      clearTimeout(timeout);
-      return func.apply(debouncedFunction, args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(effect, duration);
-  };
-  return debouncedFunction;
-}
 
 const LocationForm = (props: LocationFormProps) => {
   const {submit, loading} = props;
@@ -24,7 +12,7 @@ const LocationForm = (props: LocationFormProps) => {
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setButtonDisabled(event.target.value === '' ?? true);
+    setButtonDisabled(!event.target.value);
     setQuery(event.target.value);
   };
 
