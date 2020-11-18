@@ -5,15 +5,14 @@ import SummarySun from './components/SummarySun/SummarySun';
 import LocationForm from './components/LocationForm/LocationForm';
 import WeatherQuote from './components/WeatherQuote/WeatherQuote';
 import TodayDateTime from './components/TodayDateTime/TodayDateTime';
+import HighLow from './components/HighLow/HighLow';
 import WeatherAPI, {GoogleMapsOpenWeatherAPI} from './api/weatherAPI';
 
 const {
-  SomeText,
   WeatherSummary,
   CurrentTemp,
   City,
   DateTime,
-  LocationQuery,
   TempHigh,
   TempLow,
   TempMorn,
@@ -37,6 +36,7 @@ type AppProps = {
 
 const WeatherApp = ({store}: AppProps) => {
   const {subscribe, update} = store;
+  // @todo: pass the api in as a prop
   const api: WeatherAPI = new GoogleMapsOpenWeatherAPI(
     weather => {
       update(WeatherLoaded, weather);
@@ -62,6 +62,7 @@ const WeatherApp = ({store}: AppProps) => {
       />
       <WeatherQuote />
       <TodayDateTime date={subscribe(DateTime)} />
+      <HighLow high={subscribe(TempHigh)} low={subscribe(TempLow)} />
     </div>
   );
 };
