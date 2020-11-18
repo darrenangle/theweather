@@ -9,6 +9,7 @@ import DayTempRange from './components/DayTempRange/DayTempRange';
 import SunriseSunset from './components/SunriseSunset/SunriseSunset';
 import MainPanel from './components/layout-and-styles/MainPanel';
 import WeatherAPI, {GoogleMapsOpenWeatherAPI} from './api/weatherAPI';
+import DetailPanel from './components/layout-and-styles/DetailPanel';
 
 const {
   WeatherSummary,
@@ -51,7 +52,7 @@ const WeatherApp = ({store}: AppProps) => {
     }
   );
   return (
-    <div className="App container">
+    <div className="App ">
       <MainPanel>
         <LocationForm
           submit={(query: string) => {
@@ -67,22 +68,24 @@ const WeatherApp = ({store}: AppProps) => {
         />
         <WeatherQuote />
       </MainPanel>
-      <TodayDateTime
-        date={subscribe(DateTime)}
-        timezone={subscribe(Timezone)}
-      />
-      <HighLow high={subscribe(TempHigh)} low={subscribe(TempLow)} />
-      <DayTempRange
-        morning={subscribe(TempMorn)}
-        day={subscribe(TempDay)}
-        evening={subscribe(TempEve)}
-        night={subscribe(TempNight)}
-      />
-      <SunriseSunset
-        sunrise={subscribe(SunriseTime)}
-        sunset={subscribe(SunsetTime)}
-        timezone={subscribe(Timezone)}
-      />
+      <DetailPanel>
+        <TodayDateTime
+          date={subscribe(DateTime)}
+          timezone={subscribe(Timezone)}
+        />
+        <HighLow high={subscribe(TempHigh)} low={subscribe(TempLow)} />
+        <DayTempRange
+          morning={subscribe(TempMorn)}
+          day={subscribe(TempDay)}
+          evening={subscribe(TempEve)}
+          night={subscribe(TempNight)}
+        />
+        <SunriseSunset
+          sunrise={subscribe(SunriseTime)}
+          sunset={subscribe(SunsetTime)}
+          timezone={subscribe(Timezone)}
+        />
+      </DetailPanel>
     </div>
   );
 };

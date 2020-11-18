@@ -18,25 +18,26 @@ const BottomHalf = styled.div`
   width: 100%;
   height: 50vh;
   margin-top: 50vh;
-  background-color: ${props => props.theme.lightBG};
+  background-color: ${props => props.theme.medBG};
   position: absolute;
 `;
 
 BottomHalf.defaultProps = {
   theme: {
-    lightBG: '#D8ECF8',
+    medBG: '#D8ECF8',
   },
 };
 
 const Wrapper = styled.div`
   position: relative;
-  z-index: -1;
   min-height: 100vh;
+  width: 70%;
+  float: left;
 `;
 
 const MainPanel = (props: any) => {
   return (
-    <Wrapper className="col-9 col-sm-12">
+    <Wrapper className="">
       <TopHalf />
       <BottomHalf />
       {props.children}
