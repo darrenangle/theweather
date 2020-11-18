@@ -11,12 +11,12 @@ const SummarySun = (props: SummarySunProps) => {
   const {currentTemp, city, summary} = props;
   return (
     <SunCircle id="SummarySun">
-      <SummaryText>{summary.toLowerCase()}</SummaryText>
+      <SummaryText>{summary}</SummaryText>
       <TempText>
         {currentTemp}
         <Degree>&deg;</Degree>
       </TempText>
-      <LocationText> {city.toUpperCase()}</LocationText>
+      <LocationText> {city}</LocationText>
     </SunCircle>
   );
 };
@@ -59,8 +59,8 @@ const SummaryText = styled.div`
   font-weight: lighter;
   font-style: italic;
   font-size: 36px;
-  padding-bottom: 35px;
-  margin-top: -10px;
+  padding-bottom: 28px;
+  margin-top: -20px;
   letter-spacing: 1px;
 `;
 
@@ -69,6 +69,7 @@ const TempText = styled.div`
   font-size: 175px;
   margin-left: -15px;
   line-height: 0px;
+  margin-bottom: -9px;
 `;
 
 const Degree = styled.span`
@@ -80,5 +81,6 @@ const Degree = styled.span`
 const LocationText = styled.div`
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
+  letter-spacing: 0.05rem;
 `;

@@ -41,9 +41,9 @@ export async function getWeather(query: string): Promise<Partial<AppState>> {
     .then(response => response.json())
     .then((result: OpenWeatherOneCallAPIResponse) => {
       return {
-        summary: result.current?.weather[0]?.main ?? 'unclear',
+        summary: result.current?.weather[0]?.main?.toLowerCase() ?? 'unclear',
         currentTemp: result.current?.temp | 0 ?? 0,
-        city: result.place ?? 'nowhere, USA',
+        city: result.place?.toUpperCase().replaceAll(',', ' ') ?? 'NOWHERE USA',
         dateTime: new Date(result.current?.dt * 1000) ?? new Date(),
         high: result.daily[0]?.temp?.max | 0 ?? 0,
         low: result.daily[0]?.temp?.min | 0 ?? 0,
