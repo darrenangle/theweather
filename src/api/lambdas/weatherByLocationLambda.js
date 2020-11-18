@@ -1,3 +1,6 @@
+// Note: This is the lambda code living on the endpoint this applications makes use of. Not tied to React build.
+// Needed to combine two api calls into a single response, and obscure the API keys.
+
 const https = require('https');
 
 exports.handler = async event => {
@@ -41,6 +44,7 @@ exports.handler = async event => {
             }
           );
           reqw.on('error', e => {
+            console.log(e);
             reject({
               statusCode: 500,
               body: 'Something went wrong with the weather api.',
@@ -51,6 +55,7 @@ exports.handler = async event => {
     );
 
     req.on('error', e => {
+      console.log(e);
       reject({
         statusCode: 500,
         body: 'Something went wrong with the lat long api.',

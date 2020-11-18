@@ -13,6 +13,7 @@ const cities = [
   'Boise',
   'El Paso',
   'South Bend',
+  'Brooklyn',
 ];
 
 const LocationForm = (props: LocationFormProps) => {

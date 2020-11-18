@@ -21,6 +21,6 @@
     "jsx": "react"
   },
   "include": [
-    "src", "lambdas"
+    "src", "src/api/lambdas"
   ]
 }
