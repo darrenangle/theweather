@@ -10,9 +10,11 @@ type OpenWeatherOneCallAPIResponse = {
     sunrise: number;
     sunset: number;
     temp: number;
-    weather: {
-      main: string;
-    };
+    weather: [
+      {
+        main: string;
+      }
+    ];
   };
   daily: [
     {
@@ -39,7 +41,7 @@ export async function getWeather(query: string): Promise<Partial<AppState>> {
     .then(response => response.json())
     .then((result: OpenWeatherOneCallAPIResponse) => {
       return {
-        summary: result.current?.weather?.main ?? 'unclear',
+        summary: result.current?.weather[0]?.main ?? 'unclear',
         currentTemp: result.current?.temp | 0 ?? 0,
         city: result.place ?? 'nowhere, USA',
         dateTime: new Date(result.current?.dt * 1000) ?? new Date(),
