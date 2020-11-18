@@ -6,9 +6,10 @@ context('weather', () => {
   it('visits the app', () => {
     cy.server();
     cy.route(
-      'https://42dnorruxh.execute-api.us-east-1.amazonaws.com/default/**/**',
+      '**/default/LatLongFromGoogle**',
       'fixture:weatherLocation.json'
     ).as('weatherResponse');
     cy.visit('/');
+    
   });
 });
