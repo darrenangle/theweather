@@ -5,6 +5,19 @@ type LocationFormProps = {
   loading: boolean;
 };
 
+function debounce(func: Function, duration: number) {
+  let timeout: NodeJS.Timeout;
+  const debouncedFunction = function (...args: any) {
+    const effect = () => {
+      clearTimeout(timeout);
+      return func.apply(debouncedFunction, args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(effect, duration);
+  };
+  return debouncedFunction;
+}
+
 const LocationForm = (props: LocationFormProps) => {
   const {submit, loading} = props;
   const [query, setQuery] = useState('');
@@ -24,7 +37,7 @@ const LocationForm = (props: LocationFormProps) => {
         onChange={handleChange}
       />
       <button
-        onClick={() => submit(query)}
+        onClick={debounce(() => submit(query), 500)}
         disabled={buttonDisabled || loading}
       >
         Submit

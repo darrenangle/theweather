@@ -44,21 +44,18 @@ const initialState: AppState = {
 
 function appReducer(
   state = initialState,
-  action: {type: string; payload: any}
+  action: {type: string; payload: unknown}
 ) {
   console.log(action);
+  // @todd: break up reducers into multiple and combineReducers()
   switch (action.type) {
     case WeatherLoaded:
-      return {
-        ...state,
-        [WeatherSummary]: action.payload[WeatherSummary],
-        [CurrentTemp]: action.payload[CurrentTemp],
-      };
+      return Object.assign({}, state, action.payload as Partial<AppState>);
       break;
     case Loading:
       return {
         ...state,
-        [Loading]: action.payload,
+        [Loading]: action.payload as boolean,
       };
       break;
     default:
