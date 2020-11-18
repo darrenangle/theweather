@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 import debounce from '../../helpers/debounce';
 
-type LocationFormProps = {
+export type LocationFormProps = {
   submit: (query: string) => void;
   loading: boolean;
 };
@@ -19,12 +19,14 @@ const LocationForm = (props: LocationFormProps) => {
   return (
     <>
       <input
+        data-testid="location-input"
         type="text"
         placeholder="Enter Location"
         value={query}
         onChange={handleChange}
       />
       <button
+        data-testid="location-submit-button"
         onClick={debounce(() => submit(query), 500)}
         disabled={buttonDisabled || loading}
       >
