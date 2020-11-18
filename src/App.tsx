@@ -7,6 +7,7 @@ import TodayDateTime from './components/TodayDateTime/TodayDateTime';
 import HighLow from './components/HighLow/HighLow';
 import DayTempRange from './components/DayTempRange/DayTempRange';
 import SunriseSunset from './components/SunriseSunset/SunriseSunset';
+import DetailPanel from './components/layout-and-styles/DetailPanel';
 import WeatherAPI, {GoogleMapsOpenWeatherAPI} from './api/weatherAPI';
 
 const {
@@ -45,25 +46,27 @@ const WeatherApp = ({store}: AppProps) => {
       update(Loading, false);
     },
     error => {
-      // @todo: proper errorhandling
+      // @todo: add error handling service
       console.log(error);
     }
   );
   return (
-    <div className="App">
-      <LocationForm
-        submit={(query: string) => {
-          update(Loading, true);
-          api.updateWeatherFromQuery(query);
-        }}
-        loading={subscribe(Loading)}
-      />
-      <SummarySun
-        currentTemp={subscribe(CurrentTemp)}
-        summary={subscribe(WeatherSummary)}
-        city={subscribe(City)}
-      />
-      <WeatherQuote />
+    <div className="App container">
+      <DetailPanel>
+        <LocationForm
+          submit={(query: string) => {
+            update(Loading, true);
+            api.updateWeatherFromQuery(query);
+          }}
+          loading={subscribe(Loading)}
+        />
+        <SummarySun
+          currentTemp={subscribe(CurrentTemp)}
+          summary={subscribe(WeatherSummary)}
+          city={subscribe(City)}
+        />
+        <WeatherQuote />
+      </DetailPanel>
       <TodayDateTime
         date={subscribe(DateTime)}
         timezone={subscribe(Timezone)}
