@@ -11,9 +11,15 @@ const SunriseSunset = (props: SunriseSunsetProps) => {
     <div>
       <div>
         <p>SUNRISE</p>
-        <p>{`${sunrise.toLocaleTimeString()}`}</p>
+        <p>{`${sunrise.toLocaleTimeString('default', {
+          hour: 'numeric',
+          minute: 'numeric',
+        })}`}</p>
         <p>SUNSET</p>
-        <p>{`${sunset.toLocaleTimeString()}`}</p>
+        <p>{`${sunset.toLocaleTimeString('default', {
+          hour: 'numeric',
+          minute: 'numeric',
+        })}`}</p>
       </div>
     </div>
   );

@@ -15,7 +15,10 @@ const TodayDateTime = (props: TodayDateTimeProps) => {
       year: 'numeric',
     })
     .replaceAll(',', ' ')}`;
-  const time = date.toLocaleTimeString();
+  const time = date.toLocaleTimeString('default', {
+    hour: 'numeric',
+    minute: 'numeric',
+  });
   return (
     <div>
       <p>{plainDate}</p>

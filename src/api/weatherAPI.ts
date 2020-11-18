@@ -1,12 +1,8 @@
 import {AppState} from '../AppState';
 
-export interface LatLong {
-  getLatLongFromQuery(
-    query: string
-  ): Promise<{lat: number; long: number; message: string}>;
+export default interface WeatherAPI {
+  updateWeatherFromQuery(query: string): void;
 }
-
-enum GoogleStatusResponse {}
 
 type GoogleGeoCodeAPIResponse = {
   results: [
@@ -19,40 +15,17 @@ type GoogleGeoCodeAPIResponse = {
       };
     }
   ];
-  status: string;
+  status:
+    | 'OK'
+    | 'ZERO_RESULTS'
+    | 'OVER_DAILY_LIMIT'
+    | 'OVER_QUERY_LIMIT'
+    | 'REQUEST_DENIED'
+    | 'INVALID_REQUEST'
+    | 'UNKNOWN_ERROR';
 };
 
-export class GoogleGeocodeLatLong implements LatLong {
-  apiKey: string;
-  endpoint: string;
-  constructor(apiKey: string, endpoint: string) {
-    this.apiKey = apiKey;
-    this.endpoint = endpoint;
-  }
-  public async getLatLongFromQuery(
-    query: string
-  ): Promise<{lat: number; long: number; message: string}> {
-    const result: GoogleGeoCodeAPIResponse = await fetch(
-      `${this.endpoint}?address=${encodeURI(query)}&key=${this.apiKey}`
-    )
-      .then(response => response.json())
-      .catch(error => {
-        // @todo: replace with proper errror logging service.
-        console.log(error);
-        throw new Error('lat-long-api-error');
-        // @todo: return an object with an error and fail better.
-      });
-    return {
-      lat: result.results?.[0]?.geometry?.location?.lat ?? 0,
-      long: result.results?.[0]?.geometry?.location?.lng ?? 0,
-      message: result.status,
-    };
-  }
-}
-
-export default interface WeatherAPI {
-  updateWeatherFromQuery(query: string): void;
-}
+type OpenWeatherOneCallAPIResponse = {};
 
 export class GoogleMapsOpenWeatherAPI implements WeatherAPI {
   constructor(
@@ -61,7 +34,23 @@ export class GoogleMapsOpenWeatherAPI implements WeatherAPI {
     private onError: (error: string) => void
   ) {}
   async updateWeatherFromQuery(query: string) {
-    console.log('updateWeatherCalled');
+    const latLong = await fetch(
+      `https://42dnorruxh.execute-api.us-east-1.amazonaws.com/default/LatLongFromGoogle?place=${encodeURI(
+        query
+      )}`
+    )
+      .then(response => response.json())
+      .then((result: GoogleGeoCodeAPIResponse) => {
+        return {
+          lat: result.results?.[0]?.geometry?.location?.lat ?? 0,
+          long: result.results?.[0]?.geometry?.location?.lng ?? 0,
+          message: result.status ?? 'NO_STATUS',
+        };
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
     return await Promise.resolve({
       summary: 'Clear',
       currentTemp: 99,
