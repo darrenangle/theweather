@@ -5,7 +5,6 @@ import {Provider, useSelector} from 'react-redux';
 import {createStore} from 'redux';
 
 const {
-  SomeText,
   WeatherSummary,
   CurrentTemp,
   City,
@@ -24,7 +23,6 @@ const {
 } = AppStateKeys;
 
 const initialState: AppState = {
-  [SomeText]: 'Hello from the redux Store',
   [WeatherSummary]: 'clear',
   [CurrentTemp]: 90,
   [City]: 'Chicago',

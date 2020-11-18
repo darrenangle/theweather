@@ -6,6 +6,7 @@ import LocationForm from './components/LocationForm/LocationForm';
 import WeatherQuote from './components/WeatherQuote/WeatherQuote';
 import TodayDateTime from './components/TodayDateTime/TodayDateTime';
 import HighLow from './components/HighLow/HighLow';
+import DayTempRange from './components/DayTempRange/DayTempRange';
 import WeatherAPI, {GoogleMapsOpenWeatherAPI} from './api/weatherAPI';
 
 const {
@@ -63,6 +64,12 @@ const WeatherApp = ({store}: AppProps) => {
       <WeatherQuote />
       <TodayDateTime date={subscribe(DateTime)} />
       <HighLow high={subscribe(TempHigh)} low={subscribe(TempLow)} />
+      <DayTempRange
+        morning={subscribe(TempMorn)}
+        day={subscribe(TempDay)}
+        evening={subscribe(TempEve)}
+        night={subscribe(TempNight)}
+      />
     </div>
   );
 };

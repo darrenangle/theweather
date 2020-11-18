@@ -1,5 +1,4 @@
 export enum AppStateKeys {
-  SomeText = 'someText',
   WeatherSummary = 'summary',
   CurrentTemp = 'currentTemp',
   City = 'city',
@@ -18,7 +17,6 @@ export enum AppStateKeys {
 }
 
 const {
-  SomeText,
   WeatherSummary,
   CurrentTemp,
   City,
@@ -37,7 +35,6 @@ const {
 } = AppStateKeys;
 
 export type AppState = {
-  [SomeText]: string;
   [WeatherSummary]: string;
   [CurrentTemp]: number;
   [City]: string;
