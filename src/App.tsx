@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import {AppStateKeys} from './AppState';
 import SummarySun from './components/SummarySun/SummarySun';
 import LocationForm from './components/LocationForm/LocationForm';

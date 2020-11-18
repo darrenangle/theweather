@@ -2,7 +2,6 @@ export enum AppStateKeys {
   WeatherSummary = 'summary',
   CurrentTemp = 'currentTemp',
   City = 'city',
-  LocationQuery = 'query',
   DateTime = 'dateTime',
   TempHigh = 'high',
   TempLow = 'low',
@@ -22,7 +21,6 @@ const {
   City,
   DateTime,
   TempHigh,
-  LocationQuery,
   TempLow,
   TempMorn,
   TempDay,
@@ -38,7 +36,6 @@ export type AppState = {
   [WeatherSummary]: string;
   [CurrentTemp]: number;
   [City]: string;
-  [LocationQuery]: number;
   [DateTime]: Date;
   [TempHigh]: number;
   [TempLow]: number;

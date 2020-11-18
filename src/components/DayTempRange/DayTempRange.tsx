@@ -10,12 +10,13 @@ type DayTempRangeProps = {
 const DayTempRange = (props: DayTempRangeProps) => {
   const {morning, day, evening, night} = props;
   return (
-    <p>
+    <>
+      <br />
       <div>{morning}</div>
       <div>{day}</div>
       <div>{evening}</div>
       <div>{night}</div>
-    </p>
+    </>
   );
 };
 

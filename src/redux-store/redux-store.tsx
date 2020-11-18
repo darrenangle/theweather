@@ -10,7 +10,6 @@ const {
   City,
   DateTime,
   TempHigh,
-  LocationQuery,
   TempLow,
   TempMorn,
   TempDay,
@@ -24,9 +23,8 @@ const {
 
 const initialState: AppState = {
   [WeatherSummary]: 'clear',
-  [CurrentTemp]: 90,
-  [City]: 'Chicago',
-  [LocationQuery]: 0,
+  [CurrentTemp]: 72,
+  [City]: 'SOMEWHERE',
   [DateTime]: new Date(),
   [TempHigh]: 99,
   [TempLow]: 54,
@@ -44,7 +42,6 @@ function appReducer(
   state = initialState,
   action: {type: string; payload: unknown}
 ) {
-  console.log(action);
   // @todd: break up reducers into multiple and combineReducers()
   switch (action.type) {
     case WeatherLoaded:
