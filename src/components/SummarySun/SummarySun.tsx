@@ -9,11 +9,11 @@ type SummarySunProps = {
 const SummarySun = (props: SummarySunProps) => {
   const {currentTemp, city, summary} = props;
   return (
-    <>
+    <div id="SummarySun">
       <div>summary: {summary}</div>
       <div>temp: {currentTemp}</div>
       <div>city: {city}</div>
-    </>
+    </div>
   );
 };
 

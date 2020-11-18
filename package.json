@@ -30,6 +30,7 @@
     "posttest": "yarn run lint",
     "cypress": "cypress open",
     "cy:run": "CYPRESS_BASE_URL=http://localhost:5000 cypress run",
+    "cy:open:prod": "CYPRESS_BASE_URL=http://localhost:5000 cypress open",
     "e2e:serve": "react-scripts build && serve -s build",
     "e2e": "start-server-and-test e2e:serve http://localhost:5000 cy:run"
   },

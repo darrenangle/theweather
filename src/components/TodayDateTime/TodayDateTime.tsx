@@ -23,7 +23,7 @@ const TodayDateTime = (props: TodayDateTimeProps) => {
     timeZone: timezone,
   });
   return (
-    <div>
+    <div id="TodayDateTime">
       <p>{plainDate}</p>
       <p>{time}</p>
     </div>
