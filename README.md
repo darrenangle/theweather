@@ -2,7 +2,7 @@
 
 ![The Weather App Screenshot](./public/screenshot.png)
 
-Enter a location and recieve a stylish weather report. Theme changes color based on the time of day.  
+### Enter a location and recieve a stylish weather report. Theme changes color based on the time of day.  
 
 Recommended queries:
 ```
@@ -38,11 +38,12 @@ Builds a prod app, serves it, runs headless e2e tests against it using cypress. 
 ### Some Technical Details
 
 1. `React` and `Typescript` using create-react-app
-2. `AWS Lambda` 'backend' to consolidate api calls and obscure api keys
-3. `Google Geocoding API` to process queries and return a lat long
-4. `Open Weather API (OneCall)` to produce weather data from lat long
-5. `Cypress` for e2e testing
-6. `gts`, `prettier` for typescript linting config
+2. `redux` is the current store, the app is architected to be store agnostic. Implement the `GlobalStoreInteractor` with a store wrapper that uses implict subscriptions.
+3. `AWS Lambda` 'backend' to consolidate api calls and obscure api keys
+4. `Google Geocoding API` to process queries and return a lat long
+5. `Open Weather API (OneCall)` to produce weather data from lat long
+6. `Cypress` for e2e testing
+7. `gts`, `prettier` for typescript linting config
 ---
 
 ### todos:
