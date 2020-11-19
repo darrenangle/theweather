@@ -58,7 +58,7 @@ const SummaryText = styled.div`
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: lighter;
   font-style: italic;
-  font-size: 36px;
+  font-size: 32px;
   padding-bottom: 28px;
   margin-top: -20px;
   letter-spacing: 1px;
@@ -83,4 +83,5 @@ const LocationText = styled.div`
   font-weight: bold;
   font-size: 15px;
   letter-spacing: 0.05rem;
+  max-width: 250px;
 `;
