@@ -28,7 +28,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   align-content: stetch;
-  margin-top: 40px;
+  margin-top: 70px;
 `;
 
 const Circle = styled.div`
