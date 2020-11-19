@@ -3,7 +3,7 @@ import React from 'react';
 
 const TopHalf = styled.div`
   width: 100%;
-  height: 50vh;
+  height: 416px;
   background-color: ${props => props.theme.lightBG};
   position: absolute;
 `;
@@ -16,8 +16,8 @@ TopHalf.defaultProps = {
 
 const BottomHalf = styled.div`
   width: 100%;
-  height: 50vh;
-  margin-top: 50vh;
+  height: 416px;
+  margin-top: 416px;
   background-color: ${props => props.theme.medBG};
   position: absolute;
 `;
@@ -30,7 +30,8 @@ BottomHalf.defaultProps = {
 
 const Wrapper = styled.div`
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 832px;
   width: 70%;
   float: left;
 `;

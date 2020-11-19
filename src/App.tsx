@@ -7,9 +7,9 @@ import TodayDateTime from './components/TodayDateTime/TodayDateTime';
 import HighLow from './components/HighLow/HighLow';
 import DayTempRange from './components/DayTempRange/DayTempRange';
 import SunriseSunset from './components/SunriseSunset/SunriseSunset';
-import MainPanel from './layout-and-styles/MainPanel';
+import MainPanel from './layout-and-styles/components/MainPanel';
 import WeatherAPI, {GoogleMapsOpenWeatherAPI} from './api/weatherAPI';
-import DetailPanel from './layout-and-styles/DetailPanel';
+import DetailPanel from './layout-and-styles/components/DetailPanel';
 
 const {
   WeatherSummary,

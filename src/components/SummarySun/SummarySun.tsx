@@ -80,7 +80,7 @@ const Degree = styled.span`
 
 const LocationText = styled.div`
   font-family: 'Helvetica Neue', sans-serif;
-  font-weight: bold;
+  font-weight: 800;
   font-size: 15px;
   letter-spacing: 0.05rem;
   max-width: 250px;

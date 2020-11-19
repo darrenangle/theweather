@@ -7,14 +7,16 @@ export type LocationFormProps = {
   loading: boolean;
 };
 
-const cities = [
+const places = [
   'Seattle',
   'Chicago',
   'Kailua',
   'Boise',
   'El Paso',
-  'South Bend',
+  'Guam',
   'Brooklyn',
+  'Haiti',
+  'Sweden',
 ];
 
 const LocationForm = (props: LocationFormProps) => {
@@ -25,7 +27,7 @@ const LocationForm = (props: LocationFormProps) => {
 
   useEffect(() => {
     if (initial === false) {
-      submit(cities[Math.floor(Math.random() * cities.length)]);
+      submit(places[Math.floor(Math.random() * places.length)]);
       setInitial(true);
     }
   }, [initial]);
@@ -44,7 +46,7 @@ const LocationForm = (props: LocationFormProps) => {
       <Input
         data-testid="location-input"
         type="text"
-        placeholder="Enter Zip or City or Address"
+        placeholder="Enter City or Zip or Address"
         value={query}
         onChange={handleChange}
       />

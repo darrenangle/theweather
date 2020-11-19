@@ -3,7 +3,8 @@ import React from 'react';
 
 const Wrapper = styled.div`
   z-index: -1;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 832px;
   background-color: ${props => props.theme.darkBG};
   width: 30%;
   float: left;
