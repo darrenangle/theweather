@@ -37,10 +37,10 @@ const TodayDateTime = (props: TodayDateTimeProps) => {
 const DateText = styled.div`
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: 800;
-  font-size: 15px;
+  font-size: 18px;
   letter-spacing: 0.05rem;
   text-align: center;
-  line-height: 18px;
+  line-height: 30px;
   margin-top: 50px;
 `;
 
