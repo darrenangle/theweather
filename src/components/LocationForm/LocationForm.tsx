@@ -92,6 +92,7 @@ const Input = styled.input`
     font-weight: 400;
     opacity: 0.7;
     margin-left: 5px;
+    color: ${props => props.theme.contrastVeryDark};
   }
 `;
 
@@ -112,7 +113,7 @@ const Button = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  color: ${props => props.theme.contraskVeryDark};
+  color: ${props => props.theme.contrastVeryDark};
   border: 1px solid ${props => props.theme.contrastDark};
   border-radius: 2px;
   transition: all 0.2s;
