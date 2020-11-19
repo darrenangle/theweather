@@ -34,7 +34,7 @@ Runs integration test suite for component-only integration tests and function un
 
 #### `yarn e2e`
 
-Builds a prod app, serves it, runs headless e2e tests against it using cypress. If cypress is not installed there is a potential that the cypress app verification will time out the runner. Running the command again should solve this problem.
+Builds a prod app, serves it, runs headless e2e tests against it using cypress. If cypress is not installed there is a potential that the cypress app verification will time out the runner the first time. Running the command again should solve this problem.
 
 --- 
 ### Some Technical Details
@@ -48,7 +48,7 @@ Builds a prod app, serves it, runs headless e2e tests against it using cypress. 
 7. `gts`, `prettier` for typescript linting config
 ---
 
-### todos:
+### Todos:
 
 1. Add an overlay that responds to visibility data and darkens or lightens the theme.
 2. Better error handling for:
@@ -57,7 +57,10 @@ Builds a prod app, serves it, runs headless e2e tests against it using cypress. 
 3. UI Tweaking:
    1. Better responsivity across elements
    2. Better match the designs
-
-
+   3. Add more themes for the morning and day hours
+4. Revisit features to:
+   1. Ensure relevant test coverage
+   2. Abstract and lift state if possible
+   3. Abstract and lift dependencies
 
 
