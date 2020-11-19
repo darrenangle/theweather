@@ -80,9 +80,6 @@ describe('LocationForm', () => {
     const props = {submit, loading: false};
     const {findByTestId} = renderLocationForm(props);
     const input = await findByTestId('location-input');
-    const button = (await findByTestId(
-      'location-submit-button'
-    )) as HTMLButtonElement;
 
     // When
     fireEvent.change(input, {target: {value: 'some text'}});

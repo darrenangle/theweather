@@ -1,4 +1,10 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {
+  ChangeEvent,
+  KeyboardEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import debounce from '../../helpers/debounce';
 import styled from 'styled-components';
 
@@ -24,6 +30,7 @@ const LocationForm = (props: LocationFormProps) => {
   const [initial, setInitial] = useState(false);
   const [query, setQuery] = useState('');
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const textInput = useRef(null);
 
   useEffect(() => {
     if (initial === false) {
@@ -36,19 +43,30 @@ const LocationForm = (props: LocationFormProps) => {
     setButtonDisabled(!event.target.value);
     setQuery(event.target.value);
   };
+
   const handleClick = debounce(() => {
     submit(query);
     setButtonDisabled(true);
   }, 500);
 
+  const handleKeydown = debounce((event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      submit(query);
+      setButtonDisabled(true);
+      ((textInput.current as unknown) as HTMLInputElement)?.blur();
+    }
+  }, 500);
+
   return (
     <Wrapper>
       <Input
+        ref={textInput}
         data-testid="location-input"
         type="text"
         placeholder="Enter City or Zip or Address"
         value={query}
         onChange={handleChange}
+        onKeyDown={handleKeydown}
       />
       <Button
         data-testid="location-submit-button"
