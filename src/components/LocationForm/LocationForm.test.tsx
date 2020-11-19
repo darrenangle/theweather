@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render} from '@testing-library/react';
+import {act, fireEvent, render} from '@testing-library/react';
 import LocationForm, {LocationFormProps} from './LocationForm';
 
 describe('LocationForm', () => {
@@ -65,8 +65,11 @@ describe('LocationForm', () => {
 
     // When
     fireEvent.change(input, {target: {value: 'some text'}});
-    fireEvent.click(button);
-    jest.advanceTimersByTime(500);
+    act(() => {
+      fireEvent.click(button);
+      jest.advanceTimersByTime(500);
+    });
+
     // Then
     expect(submit).toHaveBeenCalledWith('some text');
   });
