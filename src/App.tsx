@@ -47,7 +47,6 @@ const WeatherApp = ({store}: AppProps) => {
     weather => {
       update(WeatherLoaded, weather);
       update(Loading, false);
-      // pickTheme(weather.dateTime)
     },
     error => {
       // @todo: add error handling service
