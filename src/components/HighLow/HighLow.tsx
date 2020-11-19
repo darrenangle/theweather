@@ -42,6 +42,9 @@ const Circle = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  @media (max-width: 1339px) {
+    margin: 0 10px;
+  }
 `;
 
 Circle.defaultProps = {

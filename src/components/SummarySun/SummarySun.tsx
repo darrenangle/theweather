@@ -42,6 +42,12 @@ const SunCircle = styled.div`
   justify-content: space-around;
   flex-direction: column;
   color: ${props => props.theme.summaryColor};
+  @media (max-width: 500px) {
+    min-width: 250px;
+    max-width: 350px;
+    min-height: 250px;
+    max-height: 350px;
+  }
 `;
 SunCircle.defaultProps = {
   theme: {
