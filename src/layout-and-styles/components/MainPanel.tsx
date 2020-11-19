@@ -3,7 +3,7 @@ import React from 'react';
 
 const TopHalf = styled.div`
   width: 100%;
-  height: 416px;
+  height: 50vh;
   background-color: ${props => props.theme.lightBG};
   position: absolute;
 `;
@@ -16,8 +16,8 @@ TopHalf.defaultProps = {
 
 const BottomHalf = styled.div`
   width: 100%;
-  height: 416px;
-  margin-top: 416px;
+  height: 50vh;
+  margin-top: 50vh;
   background-color: ${props => props.theme.medBG};
   position: absolute;
 `;

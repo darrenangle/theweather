@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 type TodayDateTimeProps = {
   date: Date;
@@ -16,18 +17,30 @@ const TodayDateTime = (props: TodayDateTimeProps) => {
       year: 'numeric',
       timeZone: timezone,
     })
+    .toUpperCase()
     .replaceAll(',', ' ')}`;
-  const time = date.toLocaleTimeString('default', {
-    hour: 'numeric',
-    minute: 'numeric',
-    timeZone: timezone,
-  });
+  const time = date
+    .toLocaleTimeString('default', {
+      hour: 'numeric',
+      minute: 'numeric',
+      timeZone: timezone,
+    })
+    .toUpperCase();
   return (
-    <div id="TodayDateTime">
+    <DateText id="TodayDateTime">
       <p>{plainDate}</p>
       <p>{time}</p>
-    </div>
+    </DateText>
   );
 };
+
+const DateText = styled.div`
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.05rem;
+  text-align: center;
+  line-height: 18px;
+`;
 
 export default TodayDateTime;

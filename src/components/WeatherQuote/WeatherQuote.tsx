@@ -15,7 +15,7 @@ const WeatherQuote = () => {
         setQuote(getRandomQuote());
         setFaded(false);
       }, 0.5 * 1000);
-    }, 30 * 1000);
+    }, 15 * 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -56,7 +56,7 @@ const QuoteDiv = styled.div<{faded: boolean}>`
   font-weight: 400;
   font-style: italic;
   line-height: 1.6rem;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   letter-spacing: 1px;
   color: ${props => props.theme.contrastDark};
   animation: ${({faded}) => (faded ? fadeOut : fadeIn)} 0.5s linear;

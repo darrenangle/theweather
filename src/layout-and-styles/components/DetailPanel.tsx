@@ -3,16 +3,19 @@ import React from 'react';
 
 const Wrapper = styled.div`
   z-index: -1;
+  min-height: 910px;
   height: 100vh;
-  min-height: 832px;
   background-color: ${props => props.theme.darkBG};
   width: 30%;
   float: left;
+  color: ${props => props.theme.panelContent};
+  // padding-top: 50px;
 `;
 
 Wrapper.defaultProps = {
   theme: {
     darkBG: '#AFC5CC',
+    panelContent: '#FFFFFF',
   },
 };
 
