@@ -38,7 +38,7 @@ Builds a prod app, serves it, runs headless e2e tests against it using cypress. 
 ### Some Technical Details
 
 1. `React` and `Typescript` using create-react-app
-2. `redux` is the current store, the app is architected to be store agnostic. Implement the `GlobalStoreInteractor` with a store wrapper that uses implict subscriptions.
+2. `redux` is the current store for global state, though the app is architected to be store-agnostic. To change the store, implement the `GlobalStoreInteractor` interface with a store wrapper that uses implict subscriptions.
 3. `AWS Lambda` 'backend' to consolidate api calls and obscure api keys
 4. `Google Geocoding API` to process queries and return a lat long
 5. `Open Weather API (OneCall)` to produce weather data from lat long
