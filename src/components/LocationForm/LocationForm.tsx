@@ -34,6 +34,10 @@ const LocationForm = (props: LocationFormProps) => {
     setButtonDisabled(!event.target.value);
     setQuery(event.target.value);
   };
+  const handleClick = debounce(() => {
+    submit(query);
+    setButtonDisabled(true);
+  }, 500);
 
   return (
     <Wrapper>
@@ -46,7 +50,7 @@ const LocationForm = (props: LocationFormProps) => {
       />
       <Button
         data-testid="location-submit-button"
-        onClick={debounce(() => submit(query), 500)}
+        onClick={handleClick}
         disabled={buttonDisabled || loading}
       >
         search
