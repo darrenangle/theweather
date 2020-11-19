@@ -20,7 +20,12 @@ The API Limit for this application is currently `1000` calls per day. If you wou
 
 ## Run The App Locally
 
+This project requires `yarn` cli. Install instructions [here.](https://classic.yarnpkg.com/en/docs/install#mac-stable)
+
 In the project directory, you can run:
+#### `yarn install`
+
+Installs the application dependencies. Run this first.
 
 #### `yarn start`
 
