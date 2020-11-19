@@ -36,10 +36,6 @@ const SunCircle = styled.div`
   max-height: 400px;
   background-color: ${props => props.theme.sunColor};
   border-radius: 9999px;
-  @media (max-width: 768px) {
-    max-width: 300px;
-    max-height: 300px;
-  }
   text-align: center;
   align-items: center;
   display: flex;
