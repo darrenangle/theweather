@@ -12,6 +12,8 @@ Recommended queries:
 'Vatican City',
 'Chicago'
 ```
+### Designs
+Created in Figma. [View Designs](https://www.figma.com/file/uSSTiOfwCXVBvqZ8xfMt59/Untitled?node-id=0%3A1).
 
 ### Note:
 The API Limit for this application is currently `1000` calls per day. If you would like to increase this limit please venmo `@darrenangle` $40USD to increase the limit to `2000` calls per day for 1 month.
@@ -49,12 +51,12 @@ Builds a prod app, serves it, runs headless e2e tests against it using cypress. 
 ### todos:
 
 1. Add an overlay that responds to visibility data and darkens or lightens the theme.
-2. Get closer to the designs in the actual styles.
-3. Better error handling for:
+2. Better error handling for:
    1. Odd locations
    2. API Limit hitting
-4. UI Tweaking:
-   1. 
+3. UI Tweaking:
+   1. Better responsivity across elements
+   2. Better match the designs
 
 
 
