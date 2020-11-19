@@ -7,7 +7,6 @@ import React, {
 } from 'react';
 import debounce from '../../helpers/debounce';
 import styled from 'styled-components';
-import {darken, lighten} from 'polished';
 
 export type LocationFormProps = {
   submit: (query: string) => void;

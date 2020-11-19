@@ -10,9 +10,11 @@ context('weather', () => {
   });
   it('loads a default location query', () => {
     cy.visit('/');
-    cy.get('#SummarySun').contains('Chicago, IL, USA');
+    cy.get('#SummarySun').contains('CHICAGO IL USA');
     cy.get('#SummarySun').contains('38');
-    cy.get('#TodayDateTime').contains('Wednesday November 18 2020');
+    cy.get('#TodayDateTime').contains(
+      'Wednesday November 18 2020'.toUpperCase()
+    );
   });
 
   it('search a new location and view a response', () => {
@@ -25,8 +27,10 @@ context('weather', () => {
       .trigger('blur')
       .should('have.value', 'test');
     cy.get('[data-testid=location-submit-button]').click();
-    cy.get('#SummarySun').contains('Seattle, WA, USA');
+    cy.get('#SummarySun').contains('SEATTLE WA USA');
     cy.get('#SummarySun').contains('45');
-    cy.get('#TodayDateTime').contains('Wednesday November 18 2020');
+    cy.get('#TodayDateTime').contains(
+      'Wednesday November 18 2020'.toUpperCase()
+    );
   });
 });

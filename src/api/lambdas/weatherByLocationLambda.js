@@ -1,5 +1,5 @@
 // Note: This is the lambda code living on the endpoint this applications makes use of. Not tied to React build.
-// Needed to combine two api calls into a single response, and obscure the API keys.
+// Needed to combine two api calls into a single response, and mainly obscure the API keys.
 
 const https = require('https');
 
