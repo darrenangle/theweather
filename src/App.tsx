@@ -10,6 +10,8 @@ import SunriseSunset from './components/SunriseSunset/SunriseSunset';
 import MainPanel from './layout-and-styles/components/MainPanel';
 import WeatherAPI, {GoogleMapsOpenWeatherAPI} from './api/weatherAPI';
 import DetailPanel from './layout-and-styles/components/DetailPanel';
+import Themes from './layout-and-styles/theme/themes';
+import {ThemeProvider} from 'styled-components';
 
 const {
   WeatherSummary,
@@ -54,39 +56,41 @@ const WeatherApp = ({store}: AppProps) => {
   );
   return (
     <div className="App ">
-      <MainPanel>
-        <LocationForm
-          submit={(query: string) => {
-            update(Loading, true);
-            api.updateWeatherFromQuery(query);
-          }}
-          loading={subscribe(Loading)}
-        />
-        <SummarySun
-          currentTemp={subscribe(CurrentTemp)}
-          summary={subscribe(WeatherSummary)}
-          city={subscribe(City)}
-        />
-        <WeatherQuote />
-      </MainPanel>
-      <DetailPanel>
-        <TodayDateTime
-          date={subscribe(DateTime)}
-          timezone={subscribe(Timezone)}
-        />
-        <HighLow high={subscribe(TempHigh)} low={subscribe(TempLow)} />
-        <DayTempRange
-          morning={subscribe(TempMorn)}
-          day={subscribe(TempDay)}
-          evening={subscribe(TempEve)}
-          night={subscribe(TempNight)}
-        />
-        <SunriseSunset
-          sunrise={subscribe(SunriseTime)}
-          sunset={subscribe(SunsetTime)}
-          timezone={subscribe(Timezone)}
-        />
-      </DetailPanel>
+      <ThemeProvider theme={Themes.day}>
+        <MainPanel>
+          <LocationForm
+            submit={(query: string) => {
+              update(Loading, true);
+              api.updateWeatherFromQuery(query);
+            }}
+            loading={subscribe(Loading)}
+          />
+          <SummarySun
+            currentTemp={subscribe(CurrentTemp)}
+            summary={subscribe(WeatherSummary)}
+            city={subscribe(City)}
+          />
+          <WeatherQuote />
+        </MainPanel>
+        <DetailPanel>
+          <TodayDateTime
+            date={subscribe(DateTime)}
+            timezone={subscribe(Timezone)}
+          />
+          <HighLow high={subscribe(TempHigh)} low={subscribe(TempLow)} />
+          <DayTempRange
+            morning={subscribe(TempMorn)}
+            day={subscribe(TempDay)}
+            evening={subscribe(TempEve)}
+            night={subscribe(TempNight)}
+          />
+          <SunriseSunset
+            sunrise={subscribe(SunriseTime)}
+            sunset={subscribe(SunsetTime)}
+            timezone={subscribe(Timezone)}
+          />
+        </DetailPanel>
+      </ThemeProvider>
     </div>
   );
 };
