@@ -13,11 +13,13 @@ const SunriseSunset = (props: SunriseSunsetProps) => {
     <Wrapper>
       <Item>
         <Label>SUNRISE</Label>
-        <Temp>{`${sunrise.toLocaleTimeString('default', {
-          hour: 'numeric',
-          minute: 'numeric',
-          timeZone: timezone,
-        })}`}</Temp>
+        <Temp>
+          {sunrise.toLocaleTimeString('default', {
+            hour: 'numeric',
+            minute: 'numeric',
+            timeZone: timezone,
+          })}
+        </Temp>
       </Item>
       <Item>
         <Label>SUNSET</Label>

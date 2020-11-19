@@ -40,6 +40,7 @@ export async function getWeather(query: string): Promise<Partial<AppState>> {
   )
     .then(response => response.json())
     .then((result: OpenWeatherOneCallAPIResponse) => {
+      console.log(result);
       return {
         summary: result.current?.weather[0]?.main?.toLowerCase() ?? 'unclear',
         currentTemp: result.current?.temp | 0 ?? 0,
