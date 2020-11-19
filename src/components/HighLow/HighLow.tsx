@@ -46,7 +46,6 @@ const Circle = styled.div`
 
 Circle.defaultProps = {
   theme: {
-    darkBG: '#AFC5CC',
     panelContent: '#FFFFFF',
   },
 };
