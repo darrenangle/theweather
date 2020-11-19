@@ -10,7 +10,6 @@ import SunriseSunset from './components/SunriseSunset/SunriseSunset';
 import MainPanel from './layout-and-styles/components/MainPanel';
 import WeatherAPI, {GoogleMapsOpenWeatherAPI} from './api/weatherAPI';
 import DetailPanel from './layout-and-styles/components/DetailPanel';
-import Themes from './layout-and-styles/theme/themes';
 import pickTheme from './layout-and-styles/theme/theme-picker';
 import {ThemeProvider} from 'styled-components';
 

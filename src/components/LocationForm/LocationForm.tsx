@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import debounce from '../../helpers/debounce';
 import styled from 'styled-components';
+import {darken, lighten} from 'polished';
 
 export type LocationFormProps = {
   submit: (query: string) => void;
@@ -102,7 +103,7 @@ const Input = styled.input`
   transition: all 0.5s;
   &:focus {
     outline: none;
-    background: white;
+    background: ${props => props.theme.medBG};
   }
   &::placeholder {
     font-family: 'Helvetica Neue', sans-serif;
@@ -117,6 +118,7 @@ const Input = styled.input`
 Input.defaultProps = {
   theme: {
     contrastDark: '#85A3AC',
+    medBG: '#AFC5CC',
   },
 };
 

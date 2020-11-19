@@ -876,7 +876,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.12.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
   dependencies:
@@ -3706,6 +3706,12 @@ csstype@^3.0.2:
 cyclist@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
+
+cypress-react-selector@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/cypress-react-selector/-/cypress-react-selector-2.2.0.tgz#edb3c24755e28c5322e24e667c6726016890e93b"
+  dependencies:
+    resq "1.9.2"
 
 cypress@^5.6.0:
   version "5.6.0"
@@ -7923,6 +7929,12 @@ pnp-webpack-plugin@1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
+polished@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/polished/-/polished-4.0.3.tgz#e2bde249f8884bdabc6997dd3eca225ee32f7a26"
+  dependencies:
+    "@babel/runtime" "^7.12.0"
+
 portfinder@^1.0.26:
   version "1.0.28"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.28.tgz#67c4622852bd5374dd1dd900f779f53462fac778"
@@ -9242,6 +9254,12 @@ responselike@^1.0.2:
   resolved "https://registry.yarnpkg.com/responselike/-/responselike-1.0.2.tgz#918720ef3b631c5642be068f15ade5a46f4ba1e7"
   dependencies:
     lowercase-keys "^1.0.0"
+
+resq@1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/resq/-/resq-1.9.2.tgz#f674b061b22b415225edb4d0b20c33a85f949fc1"
+  dependencies:
+    fast-deep-equal "^2.0.1"
 
 restore-cursor@^1.0.1:
   version "1.0.1"
