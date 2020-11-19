@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   width: 30%;
   float: left;
   color: ${props => props.theme.panelContent};
-  @media (max-width: 1250px) {
+  @media (max-width: 1339px) {
     width: 100%;
   }
 `;

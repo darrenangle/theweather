@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   min-height: 916px;
   width: 70%;
   float: left;
-  @media (max-width: 1250px) {
+  @media (max-width: 1339px) {
     width: 100%;
   }
 `;
