@@ -7,9 +7,6 @@ import './layout-and-styles/theme/theme-transition.css';
 
 import {withReduxStore} from './redux-store/redux-store';
 
-// This is where we'd do hard instantiations of something like a store.
-// The app itself literally wont care about the store at all. Great.
-
 ReactDOM.render(
   <React.StrictMode>{withReduxStore(WeatherApp)}</React.StrictMode>,
   document.getElementById('root')
