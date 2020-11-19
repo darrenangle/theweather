@@ -73,4 +73,25 @@ describe('LocationForm', () => {
     // Then
     expect(submit).toHaveBeenCalledWith('some text');
   });
+
+  test('<LocationForm/> should call submit with enter key press', async () => {
+    // Given
+    const submit = jest.fn();
+    const props = {submit, loading: false};
+    const {findByTestId} = renderLocationForm(props);
+    const input = await findByTestId('location-input');
+    const button = (await findByTestId(
+      'location-submit-button'
+    )) as HTMLButtonElement;
+
+    // When
+    fireEvent.change(input, {target: {value: 'some text'}});
+    act(() => {
+      fireEvent.keyDown(input, {key: 'Enter', code: 'Enter'});
+      jest.advanceTimersByTime(500);
+    });
+
+    // Then
+    expect(submit).toHaveBeenCalledWith('some text');
+  });
 });
