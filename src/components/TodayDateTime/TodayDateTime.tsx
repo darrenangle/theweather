@@ -41,6 +41,7 @@ const DateText = styled.div`
   letter-spacing: 0.05rem;
   text-align: center;
   line-height: 18px;
+  margin-top: 50px;
 `;
 
 export default TodayDateTime;

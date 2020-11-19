@@ -4,6 +4,7 @@ import React from 'react';
 const TopHalf = styled.div`
   width: 100%;
   height: 50vh;
+  min-heigt: 455px;
   background-color: ${props => props.theme.lightBG};
   position: absolute;
 `;
@@ -31,7 +32,7 @@ BottomHalf.defaultProps = {
 const Wrapper = styled.div`
   position: relative;
   height: 100vh;
-  min-height: 832px;
+
   width: 70%;
   float: left;
 `;
