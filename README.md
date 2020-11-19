@@ -1,4 +1,6 @@
-# Weather
+# The Weather
+
+![The Weather App Screenshot](./public/screenshot.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), which uses yarn by default. Stick to the yarn commands, as there is some resolution config in the package.json.
 
