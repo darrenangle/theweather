@@ -61,11 +61,16 @@ Builds a prod app, serves it, runs headless e2e tests against it using cypress. 
    2. API Limit hitting
 3. UI Tweaking:
    1. Better responsivity across elements
+      1. Add sm break point
+      2. Shrink main panel at md breakpoint instead of breaking
    2. Better match the designs
+      1. Add degree symbols to high low and day range (fussy)
    3. Add more themes for the morning and day hours
 4. Revisit features to:
    1. Ensure relevant test coverage
    2. Abstract and lift state if possible
+      1. Push fonts + breakpoints into theme
    3. Abstract and lift dependencies
+      1. Pass API class into <App/> as props for easier stubbing
 
 
