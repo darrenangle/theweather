@@ -59,9 +59,9 @@ function appReducer(
   }
 }
 
-const store = createStore(appReducer);
+export const store = createStore(appReducer);
 
-const storeInteractor = {
+export const storeInteractor = {
   update: function <T>(key: AppStateKeys, payload: T): void {
     store.dispatch({type: key, payload});
   },
@@ -70,9 +70,3 @@ const storeInteractor = {
     return (useSelector(selector) as unknown) as T;
   },
 };
-
-export const withReduxStore = (App: typeof WeatherApp) => (
-  <Provider store={store}>
-    <App store={storeInteractor} />
-  </Provider>
-);
