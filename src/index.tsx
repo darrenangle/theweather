@@ -7,11 +7,15 @@ import './layout-and-styles/theme/theme-transition.css';
 
 import {store, storeInteractor} from './redux-store/redux-store';
 import {Provider} from 'react-redux';
+import {GoogleMapsOpenWeatherAPI} from './api/weatherAPI';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <WeatherApp store={storeInteractor} />
+      <WeatherApp
+        store={storeInteractor}
+        api={new GoogleMapsOpenWeatherAPI()}
+      />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,10 +1,5 @@
+import {WeatherAPI} from '../App';
 import {AppState} from '../AppState';
-
-export default interface WeatherAPI {
-  updateWeatherFromQuery(query: string): void;
-  setOnSuccess(onSuccess: Function): void;
-  setOnError(onError: Function): void;
-}
 
 type OpenWeatherOneCallAPIResponse = {
   current: {
