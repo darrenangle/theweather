@@ -1,7 +1,5 @@
-import React from 'react';
-import WeatherApp from '../App';
 import AppState, {AppStateKeys} from '../AppState';
-import {Provider, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {createStore} from 'redux';
 
 const {
