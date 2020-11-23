@@ -72,6 +72,6 @@ Builds a prod app, serves it, runs headless e2e tests against it using cypress. 
       1. Lift init data call from component to <App/>
       2. Push fonts + breakpoints into theme
    3. Abstract and lift dependencies
-      1. Pass API class into <App/> as props for easier stubbing
+      1. Pass API class into <App/> as props for easier stubbing (Pull Request: [#1](https://github.com/darrenangle/theweather/pull/1))
 
 
