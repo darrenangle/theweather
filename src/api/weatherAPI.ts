@@ -39,15 +39,21 @@ export const mapAPIDataToState = (result: OpenWeatherOneCallAPIResponse) => {
     city:
       result?.place?.toUpperCase().replaceAll(',', ' ') ??
       'WEATHER UNPREDICTABLE: CHECK THE LOGS',
-    dateTime: new Date(result?.current?.dt * 1000) ?? new Date(),
+    dateTime: result?.current?.dt
+      ? new Date(result?.current?.dt * 1000)
+      : new Date(),
     high: result?.daily[0]?.temp?.max | 0,
     low: result?.daily[0]?.temp?.min | 0,
     morning: result?.daily[0]?.temp?.morn | 0,
     day: result?.daily[0]?.temp?.morn | 0,
     eve: result?.daily[0]?.temp?.eve | 0,
     night: result?.daily[0]?.temp?.night | 0,
-    sunrise: new Date(result?.current?.sunrise * 1000) ?? new Date(),
-    sunset: new Date(result?.current?.sunset * 1000) ?? new Date(),
+    sunrise: result?.current?.sunrise
+      ? new Date(result?.current?.sunrise * 1000)
+      : new Date(),
+    sunset: result?.current?.sunset
+      ? new Date(result?.current?.sunset * 1000)
+      : new Date(),
     timezone: result?.timezone ?? 'America/Chicago',
   };
 };
