@@ -17,7 +17,9 @@ describe('mapAPIDataToState', () => {
       sunset: new Date('01 January 0 00:00:00 UTC'),
       timezone: 'America/Chicago',
     };
-    const result = mapAPIDataToState(null);
+    const result = mapAPIDataToState(
+      (null as unknown) as OpenWeatherOneCallAPIResponse
+    );
 
     expect(result).toEqual(defaultResult);
   });
@@ -37,7 +39,9 @@ describe('mapAPIDataToState', () => {
       sunset: new Date('01 January 0 00:00:00 UTC'),
       timezone: 'America/Chicago',
     };
-    const result = mapAPIDataToState(undefined);
+    const result = mapAPIDataToState(
+      (undefined as unknown) as OpenWeatherOneCallAPIResponse
+    );
     expect(result).toEqual(defaultResult);
   });
   test('#mapAPIDataToState: should map data when valid response received', () => {
@@ -68,8 +72,8 @@ describe('mapAPIDataToState', () => {
       ],
       place: 'Chicago, IL, USA',
     };
-    const result = mapAPIDataToState(apiResponse);
-    expect(result).toEqual({
+
+    expect(mapAPIDataToState(apiResponse)).toEqual({
       city: 'CHICAGO IL USA',
       currentTemp: 31,
       dateTime: new Date('2020-11-30T14:50:19.000Z'),
