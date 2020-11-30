@@ -40,7 +40,7 @@ describe('mapAPIDataToState', () => {
     const result = mapAPIDataToState(undefined);
     expect(result).toEqual(defaultResult);
   });
-  test('#mapAPIDataToState: should default when called with undefined', () => {
+  test('#mapAPIDataToState: should map data when valid response received', () => {
     const apiResponse: OpenWeatherOneCallAPIResponse = {
       timezone: 'America/Chicago',
       current: {
