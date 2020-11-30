@@ -35,13 +35,13 @@ export type OpenWeatherOneCallAPIResponse = {
 export const mapAPIDataToState = (result: OpenWeatherOneCallAPIResponse) => {
   return {
     summary: result?.current?.weather[0]?.main?.toLowerCase() ?? 'unclear',
-    currentTemp: result?.current?.temp | 500,
+    currentTemp: result?.current?.temp ? result?.current?.temp | 0 : 500,
     city:
-      result?.place?.toUpperCase().replaceAll(',', ' ') ??
+      result?.place?.toUpperCase().replace(/,/g, '') ??
       'WEATHER UNPREDICTABLE: CHECK THE LOGS',
     dateTime: result?.current?.dt
       ? new Date(result?.current?.dt * 1000)
-      : new Date(),
+      : new Date('01 January 0 00:00:00 UTC'),
     high: result?.daily[0]?.temp?.max | 0,
     low: result?.daily[0]?.temp?.min | 0,
     morning: result?.daily[0]?.temp?.morn | 0,
@@ -50,10 +50,10 @@ export const mapAPIDataToState = (result: OpenWeatherOneCallAPIResponse) => {
     night: result?.daily[0]?.temp?.night | 0,
     sunrise: result?.current?.sunrise
       ? new Date(result?.current?.sunrise * 1000)
-      : new Date(),
+      : new Date('01 January 0 00:00:00 UTC'),
     sunset: result?.current?.sunset
       ? new Date(result?.current?.sunset * 1000)
-      : new Date(),
+      : new Date('01 January 0 00:00:00 UTC'),
     timezone: result?.timezone ?? 'America/Chicago',
   };
 };
