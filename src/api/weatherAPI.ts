@@ -4,7 +4,7 @@ export default interface WeatherAPI {
   updateWeatherFromQuery(query: string): void;
 }
 
-type OpenWeatherOneCallAPIResponse = {
+export type OpenWeatherOneCallAPIResponse = {
   current: {
     dt: number;
     sunrise: number;
@@ -32,6 +32,32 @@ type OpenWeatherOneCallAPIResponse = {
   timezone: string;
 };
 
+export const mapAPIDataToState = (result: OpenWeatherOneCallAPIResponse) => {
+  return {
+    summary: result?.current?.weather[0]?.main?.toLowerCase() ?? 'unclear',
+    currentTemp: result?.current?.temp ? result?.current?.temp | 0 : 500,
+    city:
+      result?.place?.toUpperCase().replace(/,/g, '') ??
+      'WEATHER UNPREDICTABLE: CHECK THE LOGS',
+    dateTime: result?.current?.dt
+      ? new Date(result?.current?.dt * 1000)
+      : new Date('01 January 0 00:00:00 UTC'),
+    high: result?.daily[0]?.temp?.max | 0,
+    low: result?.daily[0]?.temp?.min | 0,
+    morning: result?.daily[0]?.temp?.morn | 0,
+    day: result?.daily[0]?.temp?.morn | 0,
+    eve: result?.daily[0]?.temp?.eve | 0,
+    night: result?.daily[0]?.temp?.night | 0,
+    sunrise: result?.current?.sunrise
+      ? new Date(result?.current?.sunrise * 1000)
+      : new Date('01 January 0 00:00:00 UTC'),
+    sunset: result?.current?.sunset
+      ? new Date(result?.current?.sunset * 1000)
+      : new Date('01 January 0 00:00:00 UTC'),
+    timezone: result?.timezone ?? 'America/Chicago',
+  };
+};
+
 export async function getWeather(query: string): Promise<Partial<AppState>> {
   return await fetch(
     `https://42dnorruxh.execute-api.us-east-1.amazonaws.com/default/LatLongFromGoogle?place=${encodeURI(
@@ -40,22 +66,7 @@ export async function getWeather(query: string): Promise<Partial<AppState>> {
   )
     .then(response => response.json())
     .then((result: OpenWeatherOneCallAPIResponse) => {
-      console.log(result);
-      return {
-        summary: result.current?.weather[0]?.main?.toLowerCase() ?? 'unclear',
-        currentTemp: result.current?.temp | 0 ?? 0,
-        city: result.place?.toUpperCase().replaceAll(',', ' ') ?? 'NOWHERE USA',
-        dateTime: new Date(result.current?.dt * 1000) ?? new Date(),
-        high: result.daily[0]?.temp?.max | 0 ?? 0,
-        low: result.daily[0]?.temp?.min | 0 ?? 0,
-        morning: result.daily[0]?.temp?.morn | 0 ?? 0,
-        day: result.daily[0]?.temp?.morn | 0 ?? 0,
-        eve: result.daily[0]?.temp?.eve | 0 ?? 0,
-        night: result.daily[0]?.temp?.night | 0 ?? 0,
-        sunrise: new Date(result.current?.sunrise * 1000) ?? new Date(),
-        sunset: new Date(result.current?.sunset * 1000) ?? new Date(),
-        timezone: result.timezone ?? 'America/Chicago',
-      };
+      return mapAPIDataToState(result);
     })
     .catch(error => {
       console.log(error);
