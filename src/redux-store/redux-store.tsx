@@ -1,7 +1,5 @@
-import React from 'react';
-import WeatherApp from '../App';
 import AppState, {AppStateKeys} from '../AppState';
-import {Provider, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {createStore} from 'redux';
 
 const {
@@ -59,9 +57,9 @@ function appReducer(
   }
 }
 
-const store = createStore(appReducer);
+export const store = createStore(appReducer);
 
-const storeInteractor = {
+export const storeInteractor = {
   update: function <T>(key: AppStateKeys, payload: T): void {
     store.dispatch({type: key, payload});
   },
@@ -70,9 +68,3 @@ const storeInteractor = {
     return (useSelector(selector) as unknown) as T;
   },
 };
-
-export const withReduxStore = (App: typeof WeatherApp) => (
-  <Provider store={store}>
-    <App store={storeInteractor} />
-  </Provider>
-);

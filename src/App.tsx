@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppStateKeys} from './AppState';
+import AppState, {AppStateKeys} from './AppState';
 import SummarySun from './components/SummarySun/SummarySun';
 import LocationForm from './components/LocationForm/LocationForm';
 import WeatherQuote from './components/WeatherQuote/WeatherQuote';
@@ -8,7 +8,6 @@ import HighLow from './components/HighLow/HighLow';
 import DayTempRange from './components/DayTempRange/DayTempRange';
 import SunriseSunset from './components/SunriseSunset/SunriseSunset';
 import MainPanel from './layout-and-styles/components/MainPanel';
-import WeatherAPI, {GoogleMapsOpenWeatherAPI} from './api/weatherAPI';
 import DetailPanel from './layout-and-styles/components/DetailPanel';
 import pickTheme from './layout-and-styles/theme/theme-picker';
 import {ThemeProvider} from 'styled-components';
@@ -36,23 +35,27 @@ export interface GlobalStoreInteractor {
   subscribe: <T>(key: AppStateKeys) => T;
 }
 
+export interface WeatherAPI {
+  updateWeatherFromQuery(query: string): void;
+  setOnSuccess(onSuccess: (result: Partial<AppState>) => void): void;
+  setOnError(onError: (error: string) => void): void;
+}
+
 type AppProps = {
   store: GlobalStoreInteractor;
+  api: WeatherAPI;
 };
 
-const WeatherApp = ({store}: AppProps) => {
+const WeatherApp = ({store, api}: AppProps) => {
   const {subscribe, update} = store;
-  // @todo: pass the api in as a prop
-  const api: WeatherAPI = new GoogleMapsOpenWeatherAPI(
-    weather => {
-      update(WeatherLoaded, weather);
-      update(Loading, false);
-    },
-    error => {
-      // @todo: add error handling service
-      console.log(error);
-    }
-  );
+
+  api.setOnSuccess(weather => {
+    update(WeatherLoaded, weather);
+    update(Loading, false);
+  });
+  api.setOnError(error => {
+    console.log(error);
+  });
 
   return (
     <div className="App ">

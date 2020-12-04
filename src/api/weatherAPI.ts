@@ -89,8 +89,8 @@ export async function getWeather(query: string): Promise<Partial<AppState>> {
 
 export class GoogleMapsOpenWeatherAPI implements WeatherAPI {
   constructor(
-    private onSuccess: (result: Partial<AppState>) => void,
-    private onError: (error: string) => void,
+    private onSuccess: (result: Partial<AppState>) => void = () => {},
+    private onError: (error: string) => void = () => {},
     public getWeatherFromBackend: (
       query: string
     ) => Promise<Partial<AppState>> = getWeather
@@ -99,5 +99,11 @@ export class GoogleMapsOpenWeatherAPI implements WeatherAPI {
     return await this.getWeatherFromBackend(query)
       .then(data => this.onSuccess(data))
       .catch(error => this.onError(error));
+  }
+  setOnSuccess(onSuccess: (result: Partial<AppState>) => void) {
+    this.onSuccess = onSuccess;
+  }
+  setOnError(onError: (error: string) => void) {
+    this.onError = onError;
   }
 }
