@@ -32,6 +32,7 @@ const LocationForm = (props: LocationFormProps) => {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const textInput = useRef(null);
 
+  // @todo: lift this out to the app level.
   useEffect(() => {
     if (initial === false) {
       submit(places[Math.floor(Math.random() * places.length)]);
